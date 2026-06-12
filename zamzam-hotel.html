@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zam Zam Hotel | Authentic Country Food – Chennai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --saffron:    #E8520A;
+      --turmeric:   #F0A500;
+      --charcoal:   #1A1410;
+      --smoke:      #2C2218;
+      --cream:      #FBF6EE;
+      --muted:      #8A7969;
+      --divider:    #E0D5C5;
+      --green:      #3B6E3A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: var(--charcoal);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--turmeric);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #ccc; text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--turmeric); }
+    .nav-cta {
+      background: var(--saffron); color: #fff;
+      border: none; padding: 0.5rem 1.2rem;
+      border-radius: 2px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.04em; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #c84308; }
+
+    /* ─── HERO ────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,82,10,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* Decorative kolam-inspired ring */
+    .hero-ring {
+      position: absolute;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(240,165,0,0.12);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .hero-ring:nth-child(2) { width: 700px; height: 700px; border-color: rgba(240,165,0,0.07); }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem; color: var(--turmeric);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900; line-height: 1.05;
+      color: #fff;
+    }
+    .hero h1 span { color: var(--turmeric); }
+    .hero-tamil {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--muted); margin-top: 0.4rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .hero-desc {
+      color: #aaa; font-size: 1rem; margin-top: 1.4rem; max-width: 480px; margin-inline: auto;
+    }
+    .hero-actions {
+      margin-top: 2.2rem;
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--saffron); color: #fff;
+      padding: 0.75rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.04em; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #c84308; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.25); color: #ddd;
+      padding: 0.75rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--turmeric); color: var(--turmeric); }
+
+    /* rating pill */
+    .rating-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 99px; padding: 0.35rem 1rem;
+      font-size: 0.85rem; color: #ccc; margin-top: 2rem;
+    }
+    .stars { color: var(--turmeric); letter-spacing: 0.05em; }
+
+    /* ─── SECTION SHELL ──────────────────────── */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem; color: var(--saffron);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--charcoal);
+    }
+    .section-sub {
+      color: var(--muted); margin-top: 0.6rem; max-width: 520px; font-size: 0.95rem;
+    }
+    hr.divider {
+      border: none; border-top: 1px solid var(--divider); margin: 3rem 0;
+    }
+
+    /* ─── HIGHLIGHTS ─────────────────────────── */
+    .highlights { background: #fff; }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .highlight-card {
+      border: 1px solid var(--divider);
+      border-radius: 4px; padding: 1.8rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .highlight-card:hover { border-color: var(--saffron); transform: translateY(-3px); }
+    .hc-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .hc-name { font-weight: 600; font-size: 1rem; margin-bottom: 0.3rem; }
+    .hc-desc { font-size: 0.85rem; color: var(--muted); }
+
+    /* ─── MENU ───────────────────────────────── */
+    .menu { background: var(--cream); }
+    .menu-tabs {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 2rem 0 1.8rem;
+    }
+    .tab-btn {
+      padding: 0.45rem 1.1rem; border-radius: 2px;
+      border: 1px solid var(--divider);
+      background: transparent; cursor: pointer;
+      font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--saffron); color: #fff; border-color: var(--saffron);
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .menu-item {
+      background: #fff; border: 1px solid var(--divider);
+      border-radius: 4px; padding: 1.2rem 1.4rem;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .menu-item:hover { border-color: var(--turmeric); }
+    .mi-name { font-weight: 600; font-size: 0.95rem; }
+    .mi-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .mi-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--saffron); white-space: nowrap; margin-left: 1rem;
+    }
+    .veg-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; margin-right: 6px; vertical-align: middle;
+    }
+    .veg { background: var(--green); }
+    .nonveg { background: var(--saffron); }
+
+    /* ─── REVIEWS ────────────────────────────── */
+    .reviews { background: var(--charcoal); color: #fff; }
+    .reviews .section-title { color: #fff; }
+    .reviews .section-sub { color: #999; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem; margin-top: 2.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 4px; padding: 1.5rem;
+    }
+    .rc-stars { color: var(--turmeric); font-size: 0.85rem; margin-bottom: 0.7rem; }
+    .rc-text { font-size: 0.9rem; color: #ccc; line-height: 1.55; }
+    .rc-author { margin-top: 1rem; font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+    /* ─── INFO ───────────────────────────────── */
+    .info { background: #fff; }
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.5rem;
+    }
+    @media (max-width: 640px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; margin-bottom: 1rem; color: var(--charcoal);
+    }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.9rem; color: var(--smoke); margin-bottom: 0.9rem;
+    }
+    .info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .badge-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.6rem; }
+    .badge {
+      background: var(--cream); border: 1px solid var(--divider);
+      border-radius: 99px; padding: 0.25rem 0.85rem;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .open-tag {
+      display: inline-block;
+      background: #e8f5e9; color: var(--green);
+      border-radius: 2px; padding: 0.15rem 0.6rem;
+      font-size: 0.78rem; font-weight: 600; margin-left: 0.4rem;
+    }
+
+    /* ─── CTA BAND ───────────────────────────── */
+    .cta-band {
+      background: var(--saffron); color: #fff;
+      text-align: center; padding: 60px 5%;
+    }
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 0.6rem;
+    }
+    .cta-band p { opacity: 0.88; margin-bottom: 1.8rem; }
+    .btn-white {
+      background: #fff; color: var(--saffron);
+      padding: 0.75rem 2.2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+    .btn-white:hover { opacity: 0.9; }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--charcoal); color: #888;
+      text-align: center; padding: 2rem 5%;
+      font-size: 0.82rem;
+    }
+    footer span { color: var(--turmeric); }
+
+    /* ─── MOBILE NAV ─────────────────────────── */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 2px; background: #ccc; border-radius: 1px; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* scroll-fade */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ZAM ZAM</div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#info">Find Us</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">📞 Call Now</button>
+  <div class="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Since Chennai · Perungudi</p>
+    <h1>Zam Zam<br/><span>Hotel</span></h1>
+    <p class="hero-tamil">சம் சம் ஹோட்டல்</p>
+    <p class="hero-desc">Authentic country food with a true Madurai soul — parotta, dosas, and more, served fresh in the heart of Kandhanchavadi.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="tel:09003612020" class="btn-outline">📞 09003612020</a>
+    </div>
+    <div class="rating-pill">
+      <span class="stars">★★★★</span>
+      <strong style="color:#fff">4.0</strong>
+      <span>· 432 reviews</span>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights fade-in">
+  <p class="section-label">Why We're Loved</p>
+  <h2 class="section-title">The Zam Zam Difference</h2>
+  <p class="section-sub">Generations of flavour — honest spices, fresh ingredients, and a kitchen that never cuts corners.</p>
+  <div class="highlights-grid">
+    <div class="highlight-card">
+      <div class="hc-icon">🫓</div>
+      <div class="hc-name">Famous Parotta</div>
+      <div class="hc-desc">Flaky, layered, and made to order — every bite earns its praise.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-icon">🍄</div>
+      <div class="hc-name">Mushroom Dosa</div>
+      <div class="hc-desc">A guest favourite that keeps regulars coming back week after week.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-icon">🥦</div>
+      <div class="hc-name">Gobi Dosa</div>
+      <div class="hc-desc">Crispy on the outside, packed with well-seasoned cauliflower within.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-icon">🏡</div>
+      <div class="hc-name">Madurai Vibes</div>
+      <div class="hc-desc">Authentic country-food atmosphere — simple, warm, and full of character.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-icon">🤑</div>
+      <div class="hc-name">₹1–200 per person</div>
+      <div class="hc-desc">Great quality at prices that won't make you think twice.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hc-icon">🛵</div>
+      <div class="hc-name">Dine-in & Delivery</div>
+      <div class="hc-desc">Eat with us or get it delivered — your choice, our best effort.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu fade-in" id="menu">
+  <p class="section-label">Our Menu</p>
+  <h2 class="section-title">What's on the Plate</h2>
+  <p class="section-sub">Prices within ₹1–200 · Fresh every day</p>
+
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="filterMenu('all', this)">All</button>
+    <button class="tab-btn" onclick="filterMenu('rice', this)">Rice &amp; Biryani</button>
+    <button class="tab-btn" onclick="filterMenu('dosa', this)">Dosas</button>
+    <button class="tab-btn" onclick="filterMenu('parotta', this)">Parotta</button>
+    <button class="tab-btn" onclick="filterMenu('sides', this)">Sides</button>
+    <button class="tab-btn" onclick="filterMenu('drinks', this)">Drinks</button>
+  </div>
+
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews fade-in" id="reviews">
+  <p class="section-label">What Guests Say</p>
+  <h2 class="section-title">Real Reviews</h2>
+  <p class="section-sub">Summarised from 432 customer experiences on Google Maps</p>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">The parotta here is on a different level — soft, layered, and cooked just right. Paired with the salna, it's an absolute treat. Definitely coming back.</p>
+      <p class="rc-author">— Verified Guest</p>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars">★★★★</div>
+      <p class="rc-text">Food is actually quite tasty here, but prices are a bit high for the portions. Still, the taste makes it worth it most days.</p>
+      <p class="rc-author">— Google Review</p>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">I tried mushroom dosa and gobi dosa — both taste really good and the price is affordable. The dosas are crispy and well-spiced.</p>
+      <p class="rc-author">— Google Review</p>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars">★★★★</div>
+      <p class="rc-text">A small restaurant with good quality and a very good crowd. You can feel the authentic Madurai vibe the moment you walk in.</p>
+      <p class="rc-author">— Google Review</p>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-text">Chicken fried rice is surprisingly good for a country food place! Super tasty and filling. The staff are quick and friendly too.</p>
+      <p class="rc-author">— Verified Guest</p>
+    </div>
+    <div class="review-card">
+      <div class="rc-stars">★★★★</div>
+      <p class="rc-text">Nice ambiance for a small eatery. The food arrives hot and the flavours are homely. Great spot if you're in Perungudi area.</p>
+      <p class="rc-author">— Google Review</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info fade-in" id="info">
+  <p class="section-label">Find Us</p>
+  <h2 class="section-title">Visit Zam Zam Hotel</h2>
+  <p class="section-sub">Walk in, take away, or get it delivered — we're here for you.</p>
+  <div class="info-grid">
+    <div class="info-block">
+      <h3>📍 Location &amp; Hours</h3>
+      <div class="info-row">
+        <span class="info-icon">🗺</span>
+        <span>23, Veeramani Salai, Karunanidhi Chelan Nagar, Kandhanchavadi, Perungudi, Chennai – 600096</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <span>Open daily until 11 PM <span class="open-tag">Open Now</span></span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <a href="tel:09003612020" style="color:var(--saffron);text-decoration:none;font-weight:600">090036 12020</a>
+      </div>
+      <br/>
+      <a href="https://maps.google.com/?q=Zam+Zam+Hotel+Perungudi+Chennai" target="_blank" class="btn-primary" style="display:inline-block;font-size:0.85rem">Open in Maps →</a>
+    </div>
+    <div class="info-block">
+      <h3>🍽 Service Options</h3>
+      <div class="badge-row">
+        <span class="badge">🪑 Dine-in</span>
+        <span class="badge">🛍 Takeaway</span>
+        <span class="badge">🛵 Delivery</span>
+      </div>
+      <br/>
+      <h3 style="margin-top:1rem">💰 Price Range</h3>
+      <div class="info-row">
+        <span class="info-icon">₹</span>
+        <span>₹1–200 per person · Reported by 86 diners</span>
+      </div>
+      <h3 style="margin-top:1rem">⭐ Rating</h3>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span>4.0 out of 5 · 432 Google reviews</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band fade-in">
+  <h2>Hungry? We're Open.</h2>
+  <p>Call ahead or just walk in — there's always something fresh on the stove.</p>
+  <a href="tel:09003612020" class="btn-white">📞 Call 090036 12020</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Zam Zam Hotel</span> · 23, Veeramani Salai, Perungudi, Chennai · All rights reserved</p>
+</footer>
+
+<script>
+  // ── Menu Data ──────────────────────────────────
+  const menuData = [
+    { name: "Chicken Fried Rice", desc: "Wok-tossed with fresh vegetables & spices", price: "₹120", cat: "rice", veg: false },
+    { name: "Egg Fried Rice", desc: "Classic comfort in a bowl", price: "₹90", cat: "rice", veg: false },
+    { name: "Veg Fried Rice", desc: "Seasonal vegetables, light soy seasoning", price: "₹80", cat: "rice", veg: true },
+    { name: "Chicken Biryani", desc: "Slow-cooked country style", price: "₹160", cat: "rice", veg: false },
+    { name: "Mushroom Dosa", desc: "Crispy dosa filled with spiced mushrooms", price: "₹90", cat: "dosa", veg: true },
+    { name: "Gobi Dosa", desc: "Cauliflower masala in a golden dosa shell", price: "₹80", cat: "dosa", veg: true },
+    { name: "Plain Dosa", desc: "Classic thin & crispy, served with chutneys", price: "₹40", cat: "dosa", veg: true },
+    { name: "Masala Dosa", desc: "With spiced potato filling", price: "₹60", cat: "dosa", veg: true },
+    { name: "Egg Dosa", desc: "Egg cracked and cooked right on the dosa", price: "₹70", cat: "dosa", veg: false },
+    { name: "Parotta", desc: "Layered, flaky — the house specialty", price: "₹25", cat: "parotta", veg: true },
+    { name: "Parotta + Kurma", desc: "Parotta served with vegetable kurma", price: "₹80", cat: "parotta", veg: true },
+    { name: "Parotta + Chicken Salna", desc: "The crowd favourite combination", price: "₹120", cat: "parotta", veg: false },
+    { name: "Sambar", desc: "House-style lentil sambar", price: "₹30", cat: "sides", veg: true },
+    { name: "Chutney (2 types)", desc: "Coconut & tomato chutneys", price: "₹10", cat: "sides", veg: true },
+    { name: "Boiled Egg", desc: "Simple, satisfying", price: "₹15", cat: "sides", veg: false },
+    { name: "Tea", desc: "Strong kadak chai", price: "₹15", cat: "drinks", veg: true },
+    { name: "Filter Coffee", desc: "South Indian filter decoction", price: "₹20", cat: "drinks", veg: true },
+    { name: "Lime Juice", desc: "Fresh-squeezed, salted or sweet", price: "₹25", cat: "drinks", veg: true },
+  ];
+
+  function renderMenu(cat) {
+    const grid = document.getElementById('menuGrid');
+    const items = cat === 'all' ? menuData : menuData.filter(i => i.cat === cat);
+    grid.innerHTML = items.map(i => `
+      <div class="menu-item">
+        <div>
+          <div class="mi-name">
+            <span class="veg-dot ${i.veg ? 'veg' : 'nonveg'}"></span>${i.name}
+          </div>
+          <div class="mi-desc">${i.desc}</div>
+        </div>
+        <div class="mi-price">${i.price}</div>
+      </div>
+    `).join('');
+  }
+
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMenu(cat);
+  }
+
+  renderMenu('all');
+
+  // ── Scroll Fade ────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Mobile nav placeholder ─────────────────────
+  function toggleMobileMenu() {
+    alert('Menu: Home · Menu · Reviews · Find Us\nCall: 090036 12020');
+  }
+</script>
+</body>
+</html>
